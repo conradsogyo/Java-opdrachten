@@ -1,0 +1,78 @@
+
+/* A program to decide what the n'st prime number is.
+The program should decide if a number x is a prime number and than store it to a list. 
+Hereafter it should continue with x + 1. If the number is prime, it should be added to a list.
+If lenght of the list reaches a certain lenght, it should print the last entry (print list[-1]).
+
+
+make a list with no values in it
+
+test a number x, if it can be divided by all number lower than i.
+make sure i is incremented by 1.
+if the number x can be divided by i, x is not prime.
+x should increase by 1.
+i should get back to 2.
+
+Try again if x is prime.
+if i is equal to x, x can not be divided by a number between 2 and x.
+add this number to the list. */
+
+package prime;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+    
+
+/**
+ *
+ * @author cschreuders
+ */
+public class Prime {
+    
+    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        System.out.print("With this program, you can find the n'th prime. Please, supply n: ");
+        int n = 1;
+        n = in.nextInt();
+        
+        ArrayList prime = new ArrayList();   // make a list to store all prime numbers
+        prime.add(2);                       // add the first prime number, 2, already to list
+
+        int x;                              // x will be all normal numbers
+        x = 2;                              // since 1 is never prime, x starts with 2
+                  
+        int i;                              // i is used to divide by x
+        i = 1;                              // i starts with 1
+        
+        int rest;                           // variable to store the answer of quatant of x % i
+       
+        while (i < x && prime.size() < n) { /* start of the method. In the while loop the program
+                                                    checks if i is smaller than x AND if the length 
+                                                    of list prime is shorter than laatste. */         
+            rest = x % i;                    // calculate if x can be divided by i
+            i = i + 1;                       // increase i by 1   
+            if (rest == 0){                  // if x indeed CAN be divided by i, x is not prime   
+                x = x + 1;                   // therefore, x will be increased by 1
+                i = 2;                       // the method should start over with new x, so i = 2   
+            } else if (i == x){              // x can NOT be divided by i and now i and x are equal   
+                prime.add(x);                // this means x IS prime and x is added to list prime   
+                x = x + 1;                   // again, x is increased by 1 to look for next prime number
+                i = 2;                       // again, i is put back to 2. 
+                }
+            }
+        System.out.println(prime);          // print the list with all prime numbers untill prime n
+        System.out.println(prime.size());   // print the size of the list. This should be n.
+        int y;                              // int variable to calculate last entry
+        y = n - 1;                          // last entry should be length n of list minus 1
+        System.out.println(prime.get(y));   // print last entry y
+       } 
+   }
+        
+
