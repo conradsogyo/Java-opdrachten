@@ -1,0 +1,74 @@
+package fibonnacci;
+import java.util.Scanner;
+
+public class Fibonnacci {
+    public static void main(String[] args) {
+
+/* Fibonnacci
+
+The program should add numbers 0 to n, where n is a numeral input from user.
+It should add the first two terms to get the third term. Fourth term would be second + third term.
+When n is 5, program should calculate 0 + 1 = 1, 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8, 5 + 8 = 13.
+
+So it should each time add the new value to the last one. */
+
+	long i;   // first a number of variables should be named. 
+	long y;		// variables y and i are the main function : z = i + y to calculate the next fibonnacci term
+	long z;	// result of the calculation. z is the value of the n'th fibonnaci term. 
+	long n;	// n will store the users input. It should be a numeral.
+        long e; // value to store if z is even
+        long c; // calculates the sum of all 'e' values
+        long d;  // because the first value is 0, n should be min 1
+	int s;  // string to use when asking the user to play again
+        
+        
+        boolean again = true;
+    
+	while (again){ 
+            i = 0;
+            y = 1;
+            z = 0;
+            n = 0;
+            e = 0;
+            c = 0;
+            d = 0;
+            s = 0;
+					
+            Scanner in = new Scanner(System.in); // asks the user for input
+            System.out.print("Calculate Fibonacci! Give a number and we calculate the Fibonnaci value: ");
+            n = in.nextInt(); // store input value in n
+            n = Math.abs(n); // make sure n is positive
+            if (n > 2){     // above 2 you should do minus 2 to make sure you include the first two numbers of Fibonacci: 0, 1
+                d = n -2;   // d is n - 2
+            }else if (n > 1){
+                d = n -1;
+            }
+		
+            for (int x = 0; x < d; x++) { // x is the counter. As long as x is smaller than input numeral n, for loop commances/
+		z = i + y;	// main calculation. z is the n'th fibonnacci term
+                e = z % 2;      // determine if z is even
+                if ( e == 0){   // if z is even, e == 0
+                    c = c + z;  // c should be the sum of all even terms, so of all 'e'-s
+                }
+		i = y;	// i should take the value of y for next calculation
+		y = z; // y should take the value of z for next calculation
+		};	//end of for loop
+
+            System.out.println(z + " is the " + n + "'th Fibonnacci value.");	// print the value of n'th fibonnaci term to console
+            System.out.println();
+            System.out.println("the sum of all even values of the first " + n + " terms of fibonnacci is " + c);
+            System.out.println();
+	    Scanner opnieuw = new Scanner(System.in); // asks the user for input. Does he wants to play again?
+	    System.out.print("Wanna look up another one? Type 1 for yes  or type 0 for no. ");
+	    s = opnieuw.nextInt();
+                        
+	    if (s == 1) {
+		again = true;
+            }else {
+		again = false;
+            }
+	}
+        System.out.println("Goodbye");
+    }
+	
+}
