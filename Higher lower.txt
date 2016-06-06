@@ -1,0 +1,87 @@
+/* Computer takes a randomnumber between 1 and 100.
+Playuer has to guess the number. When the number is higher than guess, computer says higher.
+When it is lower, computer says lower. 
+Maximum amount of guesses is 7.
+
+First computer should calculate a randomnumber, secret. 
+Then number of lives should be put to 7.
+
+Ten a for loop should start. At the begin of the forloop program should ask for input.
+If player guess is higher or lower than secret, computer should have output 'lower' or 'higher'.
+Lives should be -1.
+
+For loop should continue untill Lives = 0 or if guess is equal to secret. 
+
+For loop:  for (guess = 7, guess > 0, guess-- ){
+	input user;
+	if (player == secret){
+	you guessed the number! It was + secret
+	break;
+	} if else (player < secret){
+	the number is higher. Guess again
+	} if else (player > secret){
+	the number is lower. Guess again}
+	
+If for loops ends, guesses are finised.
+Output: sorry, you did not guess the number!
+
+
+
+
+
+Code:
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package guessnumber;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author cschreuders
+ */
+ */
+public class GuessNumber {
+    
+  
+     
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        int guess;
+        int player = 0;
+        int secret = (int)(Math.random()* 100);
+        //System.out.println(secret);
+        
+        for (guess = 7; guess > 0; guess--) {
+            Scanner in = new Scanner(System.in); // asks the user for input
+            System.out.println("Guess the number! It is a number between 1 and 100. You have " + guess + " guesses left.");
+            player = in.nextInt(); // store input in intvalue called player
+            if (player == secret) { // if statement for if value player is the same as value secret
+                System.out.println("You guessed the right number! Indeed it was: " + secret + ".");
+                break;              // for loop should end.
+            } else if (player < secret) { // player is lower than secret. So next guess should be higher
+                System.out.println("No, the secret number is higher than " + player + ".");
+            } else if (player > secret) { // player is higher than secret. So next guess should be lower.
+                System.out.println("No, the secret number is lower than " + player + ".");     
+            }
+        }
+ 
+        if (guess <= 0){  // player did not guessed the correct number in 7 turns. So he loses.
+            System.out.println("Sorry, you lose... The secret number was " + secret + "...");
+        } else {    // player won and because of the break in if-statement, for loop ends. 
+            System.out.println("well played!. You had " + guess + " turns left.");
+        }
+        // TODO code application logic here
+    }
+    
+}
+
