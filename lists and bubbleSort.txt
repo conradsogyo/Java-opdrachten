@@ -1,0 +1,140 @@
+/* write a program that produces a list of random numbers.
+put each number in a list. add to list and if the list contains 10 entries, print the list. 
+
+use a for-loop to add 10 numbers to the empty list.
+
+In the for loop let the computer calculate a random number between 0 and 100.
+Add this number to the list.
+To make sure only integers are present in the list we write ArrayList<Integer>,so this list only 
+has integer values.)
+Follow for loop again. 
+
+Print out the list, now containing 10 random numbers.
+
+Calculate the highest value in the list. For this we have to initiate an object 
+called 'highest'.
+To find the highest value in a list, we need to use the 'Collections' package.
+With the statement Collections.max we can find the highest value.  
+
+We need to find the two lowest value and add them to each other. 
+To do this, we have to sort the list 'random' and then add random[0] and random[1].
+
+To make sure only even values are printed to the list, we simply calculate secret % 2.
+If the value is 0, we add it to a new list called 'even'. 
+If the value is not 0, we don't add it to our new list. 
+Finally we print the list 'even' containing only the even values of list 'random'.
+
+We want to create 4 new list:
+
+List 1 contains all values that can be divided by 2. This is list even.
+List 2 contains all values than can be divided by 3. This will be list 'three'.
+List 3 contains all values than can be divided by 5. This will be list 'five'.
+List 4 contains all other numbers. This will be list 'leftover'.
+
+We use the %2 ,    %3    and %5 statements.
+Thereafter, they are added to their list. 
+Values that cannot be divided by 2 AND not divided by 3 AND not divided by 5 are put in list 'leftover'.
+
+All lists are sorted and then printed to the console. 
+
+
+Last step is to sort the list, but by using bubble sort. 
+To use this we have to use a for statement, that goes through all the values of the list (list.size() - 1)
+It checks if the next number is higher. If this is the case, the number goes one place to the right. 
+
+
+End of  talking about the program. Start of the real program: */
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package arrays;
+
+import java.util.*; // with this statement, all java.util libraries are imported
+import java.util.ArrayList; // you need this to work with arraylists.
+import java.util.Collections; // you need this to look through and change an arraylist
+import java.util.Random; // with this you can use the random number generator.
+
+/**
+ *
+ * @author cschreuders
+ */
+public class Arrays {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+               
+         ArrayList<Integer> random = new ArrayList<Integer>(); // create a list in where 10 randomnumbers will be saved
+         ArrayList<Integer> even = new ArrayList<Integer>(); // new list to hold all even values
+         ArrayList<Integer> three = new ArrayList<Integer>(); // new list to hold all even values
+         ArrayList<Integer> five = new ArrayList<Integer>(); // new list to hold all even values
+         ArrayList<Integer> leftover = new ArrayList<Integer>(); // new list to hold all even values
+         
+         for (int x = 10; x > 0; x--) {   // initiate a for-loop to collect 10 random numbers
+             int secret = (int)(Math.random()* 100);  // create a random number between 0 and 100
+             random.add(secret);  // add the new random number to the list
+             int twee = secret % 2; // calculates if value of secret is even
+             if (twee == 0){       // if y == 0, secret is even
+                 even.add(secret);   // if y == 0, and so secret is even, add secret to even
+             }
+             int drie = secret % 3;  // calculates if value can be divided by three
+             if (drie == 0){
+                 three.add(secret);     // add these numbers to list three
+             }
+             int vijf = secret % 5; // same calculation but for numbers that can be divided by five
+             if (vijf == 0){
+                 five.add(secret);
+             } else if (secret % 2 != 0 && secret % 3 != 0 && secret % 5 != 0){
+                 leftover.add(secret);
+                      }
+             //System.out.println(secret);  // print the number (as a control to final list)
+         }
+         Collections.sort(random);  // to get lowest value you have to sort the list from lowest to highest
+         Collections.sort(even); 
+         Collections.sort(three); 
+         Collections.sort(five); 
+         Collections.sort(leftover); 
+                           
+         System.out.println("The list of random numbers has been created. We sorted it for you. It is "+ random + ".");  // print the list containing the 10 random numbers
+         Object highest = Collections.max(random); // find the highest value in list random
+         System.out.println("The highest value is " + highest + "."); // print this highest value to the console
+     
+         //System.out.println(random.get(0)); // print the first two values of list to control calculation
+         //System.out.println(random.get(1));
+         int eerste = random.get(0);    // save first two values to new variables
+         int tweede = random.get(1);
+         int laagste = eerste + tweede; // save the sum of both lowest values to again a new variable. 
+         System.out.println("The lowest two values are " + eerste + " and " + tweede + ". Added together gives you: "+ laagste + ".");
+         
+         System.out.println("All even values of the random list are " + even + "."); // print the list with even numbers
+         System.out.println("All values that can be divided by three are " + three + ".");
+         System.out.println("All values that can be divided by five are " + five + ".");
+         System.out.println("Those poor values that cannot be divided by two, three or five are " + leftover + ".");
+         
+         int[] test = {3, 5, 7, 1};
+         BubbleSort(test);   
+    }
+    
+     
+        // TODO code application logic here
+    public static void BubbleSort (int[] unsorted) {
+        
+        for (int i = 0; i < unsorted.length-1; i++) {
+            for (int j =1; j < unsorted.length-1; j++) {
+               if (unsorted[j] < unsorted[j + 1]) {
+                   int temp = unsorted[j];
+                   unsorted[j] = unsorted[j-1];
+                   unsorted[j-1] = temp;             
+                }
+            }
+            System.out.println(unsorted);
+        }
+        
+        
+    }
+}
