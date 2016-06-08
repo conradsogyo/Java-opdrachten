@@ -1,0 +1,73 @@
+/* 
+get a quote
+
+program should open a file and get an entry of this file.
+It should print the entry to the screen.
+
+program should take the date as a number and get the required quote for that day. 
+There are 6 quotes, so by using %6 the right quote is printed. 
+
+For date we need java.util.Date
+But to only get the day of the month, we need java.util.Calendar
+
+Date today = new Date();
+
+Calendar vandaag = Calendar.getInstance();
+        int day = vandaag.get(Calendar.DAY_OF_MONTH);
+		
+To read in a file, import java.io
+*/
+
+
+package quote;
+import java.util.Calendar;
+
+/**
+ *
+ * @author cschreuders
+ */
+public class Quote {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        
+        String[][] quotes = {
+{"galileo", "eppur si muove"},
+{"achimedes", "eureka!"},
+{"erasmus", "in regione caecorum rex est luscus"},
+{"socrates", "I know nothing except the fact of my ignorance"},
+{"rené descartes", "cogito, ergo sum"},
+{"sir isaac newton", "if I have seen further it is by standing on the shoulders of giants"}
+};
+        
+        Calendar vandaag = Calendar.getInstance();
+        int dag = vandaag.get(Calendar.DAY_OF_MONTH);
+        int week = vandaag.get(Calendar.DAY_OF_WEEK)-1;
+        int maand = vandaag.get(Calendar.MONTH);
+        int dagjaar = vandaag.get(Calendar.DAY_OF_YEAR);
+        
+        String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        String[] maanden = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        
+        String woche = weekdays[week];
+        String mes = maanden[maand];
+        
+        System.out.println("Quote for " + woche + " the " + dag + "th of " + mes + ":");
+        
+        int n = dagjaar % 6; // number of quote, so dag n should be divided by 6 
+   
+        String mens = quotes[n][0]; // prints the n person
+        String person = mens.substring(0, 1).toUpperCase() + mens.substring(1); // changes first letter to capital
+        
+        String tekst = quotes[n][1];
+        String quote = tekst.substring(0, 1).toUpperCase() + tekst.substring(1);
+        
+        System.out.println("\"" + quote + "\"" + " -- " + person);  // "\"" is used to print quotation marks
+        System.out.println("I hope " + person + " inspired your day. Have a good day!");
+       
+        // TODO code application logic here
+    }
+}
